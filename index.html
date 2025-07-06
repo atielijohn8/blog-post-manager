@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Pulse - Modern Blog Manager</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Blog Pulse</h1>
+    <p>Modern Blog Post Manager</p>
+  </header>
+
+  <main>
+    <section id="posts-section">
+      <h2>Available Posts</h2>
+      <div id="post-list" class="titles-list"></div>
+    </section>
+
+    <section class="form-container">
+      <h2>Create New Post</h2>
+      <form id="new-post-form">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required placeholder="Enter post title">
+        
+        <label for="author">Author Name</label>
+        <input type="text" id="author" name="author" required placeholder="Enter author name">
+        
+        <label for="image">Image URL</label>
+        <input type="text" id="image" name="image" placeholder="https://example.com/image.jpg">
+        
+        <label for="content">Post Content</label>
+        <textarea id="content" name="content" required placeholder="Write your post content here..."></textarea>
+        
+        <div class="buttons">
+          <button type="submit" class="submit-btn">Add Post</button>
+          <button type="button" class="cancel-btn">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="post-detail">
+      <h2>Post Preview</h2>
+      <div class="post-card">
+        <p class="placeholder">Select a post to preview</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="src/index.js"></script>
+</body>
+</html>
