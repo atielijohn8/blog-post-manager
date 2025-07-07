@@ -40,3 +40,13 @@ async function displayPosts() {
     postList.innerHTML = '<p>Error loading posts. Please try again.</p>';
   }
 }
+
+// Handle click on post title
+function handlePostClick(post) {
+  postDetail.innerHTML = `
+    <h3>${post.title}</h3>
+    ${post.image ? `<img src="${post.image}" alt="${post.title}">` : ''}
+    <p class="author">By: ${post.author}</p>
+    <p>${post.content}</p>
+  `;
+}
