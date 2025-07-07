@@ -7,3 +7,36 @@ const postDetail = document.querySelector('#post-detail .post-card');
 const form = document.getElementById('new-post-form');
 const cancelBtn = document.querySelector('.cancel-btn');
 
+// Main function that runs when DOM is loaded
+function main() {
+  displayPosts();
+  addNewPostListener();
+}
+
+// Fetch and display all posts
+async function displayPosts() {
+  try {
+    const response = await fetch(API_URL);
+    const posts = await response.json();
+    
+    // Clear existing list
+    postList.innerHTML = '';
+    
+    // Add each post title to the list
+    posts.forEach(post => {
+      const titleButton = document.createElement('button');
+      titleButton.className = 'post-title';
+      titleButton.textContent = post.title;
+      titleButton.addEventListener('click', () => handlePostClick(post));
+      postList.appendChild(titleButton);
+    });
+    
+    // Display first post by default
+    if (posts.length > 0) {
+      handlePostClick(posts[0]);
+    }
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    postList.innerHTML = '<p>Error loading posts. Please try again.</p>';
+  }
+}
