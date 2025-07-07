@@ -50,3 +50,47 @@ function handlePostClick(post) {
     <p>${post.content}</p>
   `;
 }
+
+// Add event listener for new post form
+function addNewPostListener() {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const newPost = {
+      title: document.getElementById('title').value,
+      author: document.getElementById('author').value,
+      image: document.getElementById('image').value,
+      content: document.getElementById('content').value
+    };
+
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newPost)
+      });
+
+      const createdPost = await response.json();
+
+       // Update UI
+      displayPosts();
+      handlePostClick(createdPost);
+      form.reset();
+      alert('Post added successfully!');
+    } catch (error) {
+      console.error('Error adding post:', error);
+      alert('Failed to add post. Please try again.');
+    }
+  });
+
+  // Cancel button functionality
+  cancelBtn.addEventListener('click', () => {
+    form.reset();
+  });
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', main);
+
